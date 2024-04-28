@@ -1,8 +1,0 @@
-[build]
-  command = "npm run build"
-  publish = "src"
-
-[[redirects]]
-  from = "/"
-  to = "/src/main.js"
-  status = 200

@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "src": "/",
+        "dest": "src/main.js"
+      }
+    ],
+    "env": {
+        "JWT_SECRET": "your_secret_key_here",
+        "JWT_EXPIRATION_TIME": "3600"
+    }
+  }
+  
