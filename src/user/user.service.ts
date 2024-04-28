@@ -19,4 +19,9 @@ export class UserService {
         const options: FindOneOptions<Users> = { where: { id: id } };
         return this.userRepository.findOne(options);
     }
+
+    async findByUserName(username: string): Promise<Users> {
+        const options: FindOneOptions<Users> = { where: { username: username } };
+        return this.userRepository.findOne(options);
+      }
 }

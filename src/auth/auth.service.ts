@@ -1,16 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UserService } from 'src/user/user.service';
+import { AuthResponseDto } from './auth.dto';
+import {compareSync as bcrypCompareSync} from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-    constructor(private jwtService: JwtService) {}
+    private jwtExpirationTimeSeconds: number;
 
-    async generateToken(payload: any) : Promise<string>{
-        return this.jwtService.signAsync(payload);
+    constructor(
+        private readonly usersService: UserService,
+        private readonly jwtService: JwtService,
+        private readonly configService: ConfigService
+    ) {
+        this.jwtExpirationTimeSeconds = +this.configService.get<number>('JWT_EXPIRATION_TIME');
     }
-
-    async validateUser(username: string, password: string) : Promise<any>{
+    
+    async signIn(username: string, pasasword: string){
+        const foundUser = await this.usersService.findByUserName(username);
         
-    }
+        if(!foundUser){
+            throw new UnauthorizedException();
+            console.log()
+        }
 
+        const payload = {sub: foundUser.id, username: foundUser.username};
+
+        const token = this.jwtService.sign(payload);
+
+        return {token, expiresIn: this.jwtExpirationTimeSeconds}
+    }
 }

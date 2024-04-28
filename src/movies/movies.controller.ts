@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Put, Delete, Body, Param} from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards} from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { Movies } from '../entity/movies.entity'; 
 import { CacheKey, CacheTTL } from '@nestjs/cache-manager';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly movieService: MovieService) {}
