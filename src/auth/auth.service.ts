@@ -22,7 +22,6 @@ export class AuthService {
         
         if(!foundUser){
             throw new UnauthorizedException();
-            console.log()
         }
 
         const payload = {sub: foundUser.id, username: foundUser.username};
