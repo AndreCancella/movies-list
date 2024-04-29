@@ -10,7 +10,7 @@ import { UserModule } from './user/user.module';
 import { Users } from './entity/user.entity';
 import { CacheModule } from '@nestjs/cache-manager';
 import * as redisStore from 'cache-manager-redis-store';
-import {ConfigModule} from '@nestjs/config'
+import {ConfigModule, ConfigService} from '@nestjs/config'
 
 
 const dbConfig: TypeOrmModuleOptions = {
@@ -30,8 +30,8 @@ const dbConfig: TypeOrmModuleOptions = {
     AuthModule, MoviesModule, UserModule,     CacheModule.register({
       useFactory: () => ({
         store: redisStore,
-        host: 'localhost',
-        port: 6379,
+        host: process.env.REDIS_URL,
+        port: process.env.REDIS_PORT,
       }),
     }),
     ],
