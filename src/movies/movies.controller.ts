@@ -3,7 +3,7 @@ import { MovieService } from './movie.service';
 import { Movies } from '../entity/movies.entity';
 import { CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { AuthGuard } from '../auth/auth.guard';
-import { getRedis, setRedis } from 'src/config/redis';
+import { getRedis, setRedis } from 'src/config/authRedis';
 import { ApiBearerAuth, ApiHeader, ApiNotFoundResponse, ApiOperation, ApiParam, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
