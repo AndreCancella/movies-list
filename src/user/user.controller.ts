@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Users } from 'src/entity/user.entity';
 import { UserService } from './user.service';
-import { getRedis, setRedis } from 'src/config/authRedis';
-import { ApiHeader, ApiNotFoundResponse, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { getRedis, setRedis } from '../config/authRedis';
+import { ApiNotFoundResponse, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('user')
 @ApiTags('users')
