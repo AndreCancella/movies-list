@@ -1,12 +1,13 @@
 import { DataSource } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: 'ep-calm-mode-a5c9sx3v.us-east-2.aws.neon.tech',
   port: 5432,
-  username: 'postgres',
-  password: 'mysecretpassword',
-  database: 'movie_list',
+  username: 'neondb_owner',
+  password: 'zSZBlqhH1mo9',
+  database: 'neondb',
   entities: ["src/entity/*{.js}"],
   migrations: ["src/migration/*{.js}"],
   logging: true,
